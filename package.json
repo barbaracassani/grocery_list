@@ -2,6 +2,9 @@
   "name": "grocery-list",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=15"
+  },
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.1",
     "@testing-library/jest-dom": "^4.2.4",
@@ -10,8 +13,13 @@
     "@types/jest": "^24.0.0",
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
+    "@types/react-dom": "^16.9.14",
     "@types/react-redux": "^7.1.7",
+    "cors": "^2.8.5",
+    "eslint-plugin-prettier": "^4.0.0",
+    "express": "^4.17.1",
+    "nedb": "^1.8.0",
+    "prettier": "^2.3.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.0",
@@ -19,13 +27,21 @@
     "typescript": "~4.1.5"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm run start:server & react-scripts start",
+    "start:server": "node server/server.js",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "npm run test:server && react-scripts test --coverage",
+    "test:server": "jest server --detectOpenHandles  --runInBand --forceExit",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "plugins": [
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": "error"
+    }
   },
   "browserslist": {
     "production": [
@@ -38,5 +54,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "supertest": "^6.1.6"
   }
 }

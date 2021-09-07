@@ -1,0 +1,23 @@
+[
+    {
+        "_id": 21344,
+        "description": "Laundry detergent",
+        "createdAt": 1631018478330,
+        "updatedAt": 1631018478330,
+        "bought": false
+    },
+    {
+        "_id": 21345,
+        "description": "Nerf gun",
+        "createdAt": 1631018478331,
+        "updatedAt": 1631018478331,
+        "bought": true
+    },
+    {
+        "_id": 21346,
+        "description": "Nerf gun ammo",
+        "createdAt": 1631018478333,
+        "updatedAt": 1631018478333,
+        "bought": true
+    }
+]
