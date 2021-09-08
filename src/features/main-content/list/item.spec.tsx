@@ -1,88 +1,105 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import Item from './item';
-import { AppDispatch } from '../../../app/store';
+import { AppDispatch, store } from '../../../app/store';
+import { Provider } from 'react-redux';
 
-xdescribe('the single item', () => {
-  let mockDispatch: AppDispatch;
-  beforeEach(() => {
-    mockDispatch = jest.fn();
-    jest.mock('react-redux', () => ({
-      ...jest.requireActual('react-redux'),
-      useDispatch: jest.fn().mockResolvedValue(mockDispatch)
-    }));
-  });
-  afterEach(() => {
-    jest.resetAllMocks();
-  });
+describe('the single item', () => {
   it('shows the value passed to it on the props', async () => {
-    const { container, unmount } = render(
-      <Item
-        item={{
-          id: 'abc',
-          description: 'Gruyere cheese',
-          bought: false,
-          createdAt: 1000,
-          updatedAt: 1000
-        }}
-      />
+    const { unmount } = render(
+      <Provider store={store}>
+        <Item
+          item={{
+            _id: 'abc',
+            description: 'Gruyere cheese',
+            bought: false,
+            createdAt: 1000,
+            updatedAt: 1000
+          }}
+        />
+      </Provider>
     );
-    // todo read the container for the value
+    expect(screen.findByText('Gruyere cheese')).toBeTruthy();
     unmount();
   });
-  it('sets bought as true by clicking the bought toggle if it was not bought', async () => {
+  it('has no bought class if not bought', async () => {
     const { container, unmount } = render(
-      <Item
-        item={{
-          id: 'abc',
-          description: 'Gruyere cheese',
-          bought: false,
-          createdAt: 1000,
-          updatedAt: 1000
-        }}
-      />
+      <Provider store={store}>
+        <Item
+          item={{
+            _id: 'abc',
+            description: 'Gruyere cheese',
+            bought: false,
+            createdAt: 1000,
+            updatedAt: 1000
+          }}
+        />
+      </Provider>
     );
-    await act(async () => {
-      fireEvent.click(await screen.findByTestId('toggle-bought-abc'));
-    });
-    // todo detect change in classes for when it's bought
+    expect(
+      screen.getByText('Gruyere cheese').classList.contains('bought')
+    ).toBeFalsy();
+    unmount();
+  });
+  it('has bought class if bought', async () => {
+    const { container, unmount } = render(
+      <Provider store={store}>
+        <Item
+          item={{
+            _id: 'abc',
+            description: 'Gruyere cheese',
+            bought: true,
+            createdAt: 1000,
+            updatedAt: 1000
+          }}
+        />
+      </Provider>
+    );
+    expect(
+      screen.getByText('Gruyere cheese').classList.contains('bought')
+    ).toBeTruthy();
     unmount();
   });
   it('sets bought as false by clicking the bought toggle if it was bought', async () => {
-    const { container, unmount } = render(
-      <Item
-        item={{
-          id: 'abc',
-          description: 'Fondue set',
-          bought: true,
-          createdAt: 1000,
-          updatedAt: 1000
-        }}
-      />
+    jest.spyOn(store, 'dispatch');
+    const { unmount } = render(
+      <Provider store={store}>
+        <Item
+          item={{
+            _id: 'abc',
+            description: 'Fondue set',
+            bought: true,
+            createdAt: 1000,
+            updatedAt: 1000
+          }}
+        />
+      </Provider>
     );
-    await act(async () => {
-      fireEvent.click(await screen.findByTestId('toggle-bought-abc'));
+    act(() => {
+      fireEvent.click(screen.getByTestId('toggle-bought-abc'));
     });
-    // todo detect change in classes for when it's not bought
+    // @ts-ignore
+    expect(store.dispatch.mock.results[0].value.arg.bought).toBeFalsy();
     unmount();
   });
   it('deletes the item on clicking delete', async () => {
+    jest.spyOn(store, 'dispatch');
     const { container, unmount } = render(
-      <Item
-        item={{
-          id: 'abc',
-          description: 'Fondue set',
-          bought: true,
-          createdAt: 1000,
-          updatedAt: 1000
-        }}
-      />
+      <Provider store={store}>
+        <Item
+          item={{
+            _id: 'abc',
+            description: 'Fondue set',
+            bought: true,
+            createdAt: 1000,
+            updatedAt: 1000
+          }}
+        />
+      </Provider>
     );
     await act(async () => {
       fireEvent.click(await screen.findByTestId('delete-abc'));
     });
-    // todo maybe no need to mock the store
-    // todo be more specific
-    expect(mockDispatch).toHaveBeenCalledWith(expect.any(Function));
+    expect(store.dispatch).toHaveBeenCalledWith(expect.any(Function));
     unmount();
   });
 });

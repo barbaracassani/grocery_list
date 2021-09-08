@@ -20,7 +20,7 @@ jest.mock('react-redux', () => ({
   }
 }));
 
-xdescribe('the list', () => {
+describe('the list', () => {
   it('displays a list of items', async () => {
     const { unmount } = render(
       <Provider store={store}>
