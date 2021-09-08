@@ -7,6 +7,7 @@ interface ButtonProps {
   testId: string;
   onClick: (e: SyntheticEvent) => void;
   label: string;
+  className?: string;
 }
 
 const Button: FunctionComponent<ButtonProps> = ({
@@ -14,10 +15,17 @@ const Button: FunctionComponent<ButtonProps> = ({
   name,
   testId,
   onClick,
-  label
+  label,
+  className
 }) => {
   return (
-    <ButtonStyled id={id} name={name} data-testid={testId} onClick={onClick}>
+    <ButtonStyled
+      className={className ?? ''}
+      id={id}
+      name={name}
+      data-testid={testId}
+      onClick={onClick}
+    >
       {label}
     </ButtonStyled>
   );

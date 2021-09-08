@@ -7,8 +7,7 @@ export const colours = {
   blue: '#1795d4'
 };
 
-export const fadeInAndEnterFromTop: InterpolationFunction<number | undefined> =
-  (speed?: number) => `
+export const fadeInAndEnterFromTop = (speed?: number) => `
   animation: fadeinandslide ${speed || 1}s;
   @keyframes fadeinandslide {
     from {
@@ -18,22 +17,6 @@ export const fadeInAndEnterFromTop: InterpolationFunction<number | undefined> =
     to {
       opacity: 1;
       transform: translateY(0);
-    }
-  }
-`;
-
-export const fadeOutAndLeave: InterpolationFunction<number | undefined> = (
-  speed?: number
-) => `
-  animation: fadeoutandslide ${speed || 1}s;
-  @keyframes fadeoutandslide {
-    from {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    to {
-      opacity: 0;
-      transform: translateY(-3em);
     }
   }
 `;

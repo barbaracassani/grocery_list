@@ -3,7 +3,6 @@ import Form from './form';
 import { Provider } from 'react-redux';
 import { store } from '../../../app/store';
 import * as api from '../../../app/api';
-import sampleData from '../../../../server/sampleData.json';
 
 describe('the insert form', () => {
   let mockApi: jest.Mocked<typeof api>;

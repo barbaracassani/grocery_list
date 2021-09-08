@@ -23,9 +23,15 @@ export const addItem = createAsyncThunk(
 export const updateItem = createAsyncThunk(
   'item/update',
   async (
-    item: Partial<ItemShape>,
+    item: {
+      _id: ItemShape['_id'];
+      bought: ItemShape['bought'];
+    },
     _thunkAPI
-  ): Promise<Partial<Omit<ItemShape, '_id'> & { id: string }>> => {
+  ): Promise<{
+    _id: ItemShape['_id'];
+    bought: ItemShape['bought'];
+  }> => {
     const { _id } = item;
     await api.putItem(_id!, item);
     return item;
@@ -64,12 +70,9 @@ export const slice = createSlice({
       itemsAdapter.upsertOne(state, action.payload);
     });
     builder.addCase(updateItem.fulfilled, (state, action) => {
-      // todo fix this
-      // @ts-ignore
       itemsAdapter.upsertOne(state, action.payload);
     });
     builder.addCase(deleteItem.fulfilled, (state, action) => {
-      console.info('will remove', action.payload);
       itemsAdapter.removeOne(state, action.payload);
     });
   }

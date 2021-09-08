@@ -1,8 +1,9 @@
-import React, { FunctionComponent, useEffect } from 'react';
+import React, { FunctionComponent, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../app/store';
 import { getItems } from './list.slice';
 import Item from './item';
+import { ListStyled } from './list.styled';
 
 const List: FunctionComponent<{}> = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -12,17 +13,25 @@ const List: FunctionComponent<{}> = () => {
   useEffect(() => {
     dispatch(getItems());
   }, [dispatch]);
+
+  const orderedItems = useMemo(() => {
+    return [...items.ids].sort((a, b) => {
+      return items.entities[a]!.createdAt! < items.entities[b]!.createdAt!
+        ? 1
+        : -1;
+    });
+  }, [items.ids]);
+
   return (
-    <ul>
-      {items?.ids?.length ? (
-        items.ids?.map((id) => {
-          // @ts-ignore
+    <ListStyled>
+      {orderedItems?.length ? (
+        orderedItems.map((id) => {
           return <Item item={items.entities[id]!} key={id} />;
         })
       ) : (
         <li>No items in the list</li>
       )}
-    </ul>
+    </ListStyled>
   );
 };
 

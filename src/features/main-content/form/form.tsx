@@ -1,41 +1,43 @@
 import React, { FunctionComponent, SyntheticEvent, useState } from 'react';
 
 import Button from '../../../assets/common-components/button';
-import { InputStyled } from './form.styled';
+import { FormStyled, InputStyled } from './form.styled';
 import { useAppDispatch } from '../../../app/hooks';
 import { addItem } from '../list/list.slice';
 
 const Form: FunctionComponent<{}> = () => {
-  const [value, setValue] = useState('');
+  const [description, setDescription] = useState('');
   const dispatch = useAppDispatch();
 
   return (
-    <form>
+    <FormStyled>
       <InputStyled
         data-testid="input-text-box"
-        value={value}
+        value={description}
         type="text"
         onChange={(e: SyntheticEvent) => {
           const target = e.target as HTMLInputElement;
-          setValue(target.value);
+          setDescription(target.value);
         }}
       />
       <Button
         onClick={(e) => {
           e.preventDefault();
-          dispatch(
-            addItem({
-              description: value,
-              bought: false
-            })
-          );
-          setValue('');
+          if (description) {
+            dispatch(
+              addItem({
+                description,
+                bought: false
+              })
+            );
+            setDescription('');
+          }
         }}
         testId="add-button"
         name="add-button"
         label="Add"
       />
-    </form>
+    </FormStyled>
   );
 };
 

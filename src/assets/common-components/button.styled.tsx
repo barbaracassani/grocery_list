@@ -7,4 +7,13 @@ export const ButtonStyled = styled.button`
   box-shadow: none;
   border-radius: 5px;
   font-size: 2rem;
+  cursor: pointer;
+  &:hover {
+    background: ${colours.light};
+    color: ${colours.dark};
+  }
+  &.danger:hover {
+    background: ${colours.dark};
+    color: ${colours.highlight};
+  }
 `;

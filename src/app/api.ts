@@ -19,7 +19,7 @@ const methods = {
   },
   postItem: async (dataToPost: Omit<ItemShape, '_id'>): Promise<ItemShape> => {
     const { data } = await axiosInstance.post('list/item', dataToPost);
-    return data;
+    return data as ItemShape;
   },
   putItem: async (
     id: string,
