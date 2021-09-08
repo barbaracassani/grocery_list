@@ -3,6 +3,7 @@ import { ItemShape } from '../../../app/api';
 import Button from '../../../assets/common-components/button';
 import { useAppDispatch } from '../../../app/hooks';
 import { deleteItem, updateItem } from './list.slice';
+import { ItemStyled } from './item.styled';
 
 interface ItemProps {
   item: ItemShape;
@@ -13,8 +14,7 @@ const Item: FunctionComponent<ItemProps> = (props) => {
   const dispatch = useAppDispatch();
 
   return (
-    <li className={bought ? 'bought' : ''}>
-      {props.item.description}
+    <ItemStyled className={bought ? 'bought' : ''}>
       <Button
         name="deleteItem"
         testId={`delete-${_id}`}
@@ -38,7 +38,8 @@ const Item: FunctionComponent<ItemProps> = (props) => {
         }}
         label="Toggle bought"
       />
-    </li>
+      {props.item.description}
+    </ItemStyled>
   );
 };
 

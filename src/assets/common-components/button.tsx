@@ -1,4 +1,5 @@
 import React, { FunctionComponent, SyntheticEvent } from 'react';
+import { ButtonStyled } from './button.styled';
 
 interface ButtonProps {
   id?: string;
@@ -16,9 +17,9 @@ const Button: FunctionComponent<ButtonProps> = ({
   label
 }) => {
   return (
-    <button id={id} name={name} data-testid={testId} onClick={onClick}>
+    <ButtonStyled id={id} name={name} data-testid={testId} onClick={onClick}>
       {label}
-    </button>
+    </ButtonStyled>
   );
 };
 export default Button;

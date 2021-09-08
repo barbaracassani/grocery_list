@@ -13,10 +13,12 @@ export const LayoutStyled = styled.div`
     flex-basis: 25%;
     align-items: flex-start;
     @media ${breakpoints.smallAndMedium} { flex-basis: 100% }
+    font-size: 1.5rem;
   }
   }
   & .slot-for-main-content {
     flex-basis: 72%;
     @media ${breakpoints.smallAndMedium} { flex-basis: 100% }
+    font-size: 1.5rem;
   }
 `;

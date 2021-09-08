@@ -1,6 +1,7 @@
 import React, { FunctionComponent, SyntheticEvent, useState } from 'react';
 
 import Button from '../../../assets/common-components/button';
+import { InputStyled } from './form.styled';
 import { useAppDispatch } from '../../../app/hooks';
 import { addItem } from '../list/list.slice';
 
@@ -10,7 +11,7 @@ const Form: FunctionComponent<{}> = () => {
 
   return (
     <form>
-      <input
+      <InputStyled
         data-testid="input-text-box"
         value={value}
         type="text"
