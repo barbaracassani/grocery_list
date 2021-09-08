@@ -1,12 +1,13 @@
 import axios from 'axios';
 
-export interface ItemShape {
+export type ItemShape = {
   _id: string;
   description: string;
   createdAt: number;
   updatedAt: number;
   bought: boolean;
-}
+};
+export type ItemShapeInRedux = Omit<ItemShape, '_id'> & { id: string };
 
 let axiosInstance = axios.create({
   baseURL: 'http://localhost:4000'
