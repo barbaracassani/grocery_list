@@ -24,6 +24,7 @@ const Item: FunctionComponent<ItemProps> = (props) => {
             e.preventDefault();
             dispatch(deleteItem(_id));
           },
+          // eslint-disable-next-line react-hooks/exhaustive-deps -- dispatch is generally safe to omit
           [_id]
         )}
         label="Delete"
@@ -41,6 +42,7 @@ const Item: FunctionComponent<ItemProps> = (props) => {
               })
             );
           },
+          // eslint-disable-next-line react-hooks/exhaustive-deps -- dispatch is generally safe to omit
           [_id, bought]
         )}
         label="Toggle bought"

@@ -6,7 +6,8 @@ export const ButtonStyled = styled.button`
   background: ${colours.blue};
   box-shadow: none;
   border-radius: 5px;
-  font-size: 2rem;
+  font-size: 1.4rem;
+  padding: 0.5rem;
   cursor: pointer;
   &:hover {
     background: ${colours.light};

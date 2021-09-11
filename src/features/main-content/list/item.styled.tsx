@@ -5,7 +5,7 @@ export const ItemStyled = styled.li`
   margin-bottom: 10px;
   ${fadeInAndEnterFromTop.bind(null, 0.3)};
   &.bought {
-    opacity: 0.8;
+    opacity: 0.7;
     text-decoration: line-through;
   }
   & button {

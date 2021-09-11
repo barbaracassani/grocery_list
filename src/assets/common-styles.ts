@@ -1,5 +1,3 @@
-import { InterpolationFunction } from 'styled-components';
-
 export const colours = {
   dark: '#333333',
   light: '#f5f5f5',

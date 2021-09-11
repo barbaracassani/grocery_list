@@ -20,7 +20,7 @@ const List: FunctionComponent<{}> = () => {
         ? 1
         : -1;
     });
-  }, [items.ids]);
+  }, [items.ids, items.entities]);
 
   return (
     <ListStyled>
