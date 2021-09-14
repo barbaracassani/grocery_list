@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { FunctionComponent, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../app/store';
@@ -31,10 +32,10 @@ const List: FunctionComponent<{}> = () => {
   return (
     <>
     <ListStyled>
-      {orderedItems?.length ? (
+      { orderedItems?.length ? (
         orderedItems.map((id) => {
           return <Item item={items.entities[id]!} key={id} />;
-        })
+        } )
       ) : (
         <li>No items in the list</li>
       )}
