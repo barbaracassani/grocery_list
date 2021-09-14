@@ -22,15 +22,20 @@ describe('the insert form', () => {
       </Provider>
     );
     const input = screen.getByTestId('input-text-box') as HTMLInputElement;
+    const priceInput = screen.getByTestId('price-box-id') as HTMLInputElement;
     act(() => {
       fireEvent.change(input, {
         target: { value: 'Roomba' }
+      });
+      fireEvent.change(priceInput, {
+        target: { value: 45 }
       });
     });
     act(() => {
       fireEvent.click(screen.getByTestId('add-button'));
     });
     expect(input.value).toEqual('');
+    expect(priceInput.value).toEqual('');
     unmount();
   });
   it('dispatches addItem on submit with the value of the field', async () => {
@@ -41,9 +46,14 @@ describe('the insert form', () => {
       </Provider>
     );
     const input = screen.getByTestId('input-text-box') as HTMLInputElement;
+    const priceInput = screen.getByTestId('price-box-id') as HTMLInputElement;
+
     act(() => {
       fireEvent.change(input, {
         target: { value: 'Roomba' }
+      });
+      fireEvent.change(priceInput, {
+        target: { value: 45 }
       });
     });
     act(() => {
@@ -53,6 +63,10 @@ describe('the insert form', () => {
     // @ts-ignore
     expect(store.dispatch.mock.results[0].value.arg.description).toEqual(
       'Roomba'
+    );
+    // @ts-ignore
+    expect(store.dispatch.mock.results[0].value.arg.price).toEqual(
+      45
     );
 
     unmount();

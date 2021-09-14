@@ -11,6 +11,7 @@ describe('the single item', () => {
           item={{
             _id: 'abc',
             description: 'Gruyere cheese',
+            price: 45,
             bought: false,
             createdAt: 1000,
             updatedAt: 1000
@@ -19,6 +20,7 @@ describe('the single item', () => {
       </Provider>
     );
     expect(screen.findByText('Gruyere cheese')).toBeTruthy();
+    expect(screen.findByText(45)).toBeTruthy();
     unmount();
   });
   it('has no bought class if not bought', async () => {
@@ -28,6 +30,7 @@ describe('the single item', () => {
           item={{
             _id: 'abc',
             description: 'Gruyere cheese',
+            price: 45,
             bought: false,
             createdAt: 1000,
             updatedAt: 1000
@@ -89,6 +92,7 @@ describe('the single item', () => {
           item={{
             _id: 'abc',
             description: 'Fondue set',
+            price: 45,
             bought: true,
             createdAt: 1000,
             updatedAt: 1000
