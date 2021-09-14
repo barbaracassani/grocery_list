@@ -14,6 +14,12 @@ const List: FunctionComponent<{}> = () => {
     dispatch(getItems());
   }, [dispatch]);
 
+  const totalPrice = items.ids.reduce((accu: number, id) => {
+    const p = items.entities[id]?.price ?? 0;
+    accu = accu + p;
+    return accu;
+  }, 0 as number);
+
   const orderedItems = useMemo(() => {
     return [...items.ids].sort((a, b) => {
       return items.entities[a]!.createdAt! < items.entities[b]!.createdAt!
@@ -23,6 +29,7 @@ const List: FunctionComponent<{}> = () => {
   }, [items.ids, items.entities]);
 
   return (
+    <>
     <ListStyled>
       {orderedItems?.length ? (
         orderedItems.map((id) => {
@@ -32,6 +39,8 @@ const List: FunctionComponent<{}> = () => {
         <li>No items in the list</li>
       )}
     </ListStyled>
+      <span>Price: {totalPrice}</span>
+    </>
   );
 };
 
