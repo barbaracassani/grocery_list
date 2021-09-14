@@ -42,6 +42,7 @@ const Form: FunctionComponent<{}> = () => {
               })
             );
             setDescription('');
+            setPrice(undefined);
           }
         }}
         testId="add-button"
