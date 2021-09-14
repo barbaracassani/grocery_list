@@ -10,10 +10,12 @@ jest.mock('react-redux', () => ({
       ids: ['1', '2'],
       entities: {
         '1': {
-          description: 'Sandwich'
+          description: 'Sandwich',
+          price: 22
         },
         '2': {
-          description: 'High heels'
+          description: 'High heels',
+          price: 10
         }
       }
     };
@@ -29,6 +31,7 @@ describe('the list', () => {
     );
     expect(screen.getByText('Sandwich')).toBeTruthy();
     expect(screen.getByText('High heels')).toBeTruthy();
+    expect(screen.getByText(32)).toBeTruthy();
     unmount();
   });
 });
