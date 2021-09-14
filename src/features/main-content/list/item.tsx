@@ -48,6 +48,7 @@ const Item: FunctionComponent<ItemProps> = (props) => {
         label="Toggle bought"
       />
       {props.item.description}
+      {props.item.price}
     </ItemStyled>
   );
 };

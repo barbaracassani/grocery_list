@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const Datastore = require('nedb');
-const sampleData = require('./sampleData.json');
 
 const itemPost = require('./item.post');
 const itemListGet = require('./list.get');

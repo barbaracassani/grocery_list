@@ -7,6 +7,7 @@ import { addItem } from '../list/list.slice';
 
 const Form: FunctionComponent<{}> = () => {
   const [description, setDescription] = useState('');
+  const [price, setPrice] = useState<number | undefined>(undefined);
   const dispatch = useAppDispatch();
 
   return (
@@ -20,6 +21,15 @@ const Form: FunctionComponent<{}> = () => {
           setDescription(target.value);
         }}
       />
+      <InputStyled
+        data-testid="price-box-id"
+        value={String(price)}
+        type="number"
+        onChange={(e: SyntheticEvent) => {
+          const target = e.target as HTMLInputElement;
+          setPrice(parseInt(target.value, 10));
+        }}
+      />
       <Button
         onClick={(e) => {
           e.preventDefault();
@@ -27,6 +37,7 @@ const Form: FunctionComponent<{}> = () => {
             dispatch(
               addItem({
                 description,
+                price,
                 bought: false
               })
             );

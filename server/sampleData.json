@@ -2,6 +2,7 @@
     {
         "_id": 21344,
         "description": "Laundry detergent",
+        "price": 1999,
         "createdAt": 1631018478330,
         "updatedAt": 1631018478330,
         "bought": false
@@ -9,6 +10,7 @@
     {
         "_id": 21345,
         "description": "Nerf gun",
+        "price": 23,
         "createdAt": 1631018478331,
         "updatedAt": 1631018478331,
         "bought": true
@@ -16,6 +18,7 @@
     {
         "_id": 21346,
         "description": "Nerf gun ammo",
+        "price": 33,
         "createdAt": 1631018478333,
         "updatedAt": 1631018478333,
         "bought": true

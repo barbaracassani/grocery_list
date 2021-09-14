@@ -3,6 +3,7 @@ import axios from 'axios';
 export type ItemShape = {
   _id: string;
   description?: string;
+  price?: number;
   createdAt?: number;
   updatedAt?: number;
   bought: boolean;
